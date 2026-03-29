@@ -1,7 +1,10 @@
 import React, {useRef} from 'react';
 import Input from "./Input.jsx";
+import Modal from "./Modal.jsx";
 
     function NewProject({onAdd}) {
+        const modal = useRef();
+
         const title = useRef();
         const description = useRef();
         const dueDate = useRef();
@@ -11,6 +14,11 @@ import Input from "./Input.jsx";
             const enteredDescription = description.current.value;
             const enteredDuDate = dueDate.current.value;
 
+            if(enteredTitle.trim === '' || enteredDescription.trim() === '' || enteredDuDate.trim() === '' || enteredDuDate.trim() === '') {
+                modal.current.open();
+                return
+            }
+
             onAdd({
                 title: enteredTitle,
                 description: enteredDescription,
@@ -19,6 +27,11 @@ import Input from "./Input.jsx";
         }
 
     return (
+        <>
+        <Modal ref={modal} buttonCaption='Close'>
+            <h2>Invalid Input</h2>
+            <p>You forgot to enter a value</p>
+        </Modal>
         <div className='w-[35rem] mt-16'>
             <menu className='flex items-center justify-end gap-4 my-4'>
                 <li>
@@ -37,6 +50,7 @@ import Input from "./Input.jsx";
                 <Input type='date' ref={dueDate} label='Due Date'/>
             </div>
         </div>
+        </>
     );
 }
 
