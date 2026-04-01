@@ -29,8 +29,8 @@ import Modal from "./Modal.jsx";
     return (
         <>
         <Modal ref={modal} buttonCaption='Close'>
-            <h2>Invalid Input</h2>
-            <p>You forgot to enter a value</p>
+            <h2 className='text-xl font-bold text-stone-700 my-4'>Invalid Input</h2>
+            <p className='text-stone-600 mb-4'>You forgot to enter a value</p>
         </Modal>
         <div className='w-[35rem] mt-16'>
             <menu className='flex items-center justify-end gap-4 my-4'>
